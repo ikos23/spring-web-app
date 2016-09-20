@@ -1,5 +1,5 @@
 # homework 1
-run mvn package to build WAR
+run mvn package under root catalog to build project into WAR archive
 
 find WAR lms-web/target to tomcat or any other SC
 
