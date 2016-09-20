@@ -1,0 +1,66 @@
+<div class="row marketing">
+	<div class="col-lg-12 col-sm-12">
+		<h2> Learning Management System </h2>
+		<div>
+			<p class="bg-primary" style="padding: 10px;">Current active programs</p>
+		</div>
+		<div ng-show="$ctrl.activePrograms.plist.length == 0" style="margin-left: 15px;">No active programs. New program can be created on <a href="#/mtprogram">Mentorship Programs</a> page</div>
+		<div ng-repeat="prg in $ctrl.activePrograms.plist track by $index" class="col-sm-12 col-md-12 col-lg-12">
+		  <div class="thumbnail">
+		      <div class="caption">
+		        <h3>{{ prg.name }}</h3>
+		        <p>Office: {{ prg.office }}</p>
+		        <p>Period : {{ prg.startDate | date:'dd/MM/yyyy' }} - {{ prg.endDate | date:'dd/MM/yyyy' }}</p>
+		      </div>
+		      
+		      <a class="btn btn-primary btn-sm" role="button" data-toggle="collapse" data-target="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample{{$index}}" style="margin-left: 10px;">
+		      	Phases
+		      </a>
+		      <div class="collapse" id="collapseExample{{$index}}" style="margin-top: 10px;">
+		      	<span ng-show="prg.phases.length == 0" style="margin-left: 15px;">No phases</span>
+			    <div>
+			      <ul>
+		      		<li ng-repeat="ph in prg.phases track by $index">
+		      			<span> {{ ph.name }} ({{ ph.startDate | date:'dd/MM/yyyy' }} - {{ ph.endDate | date:'dd/MM/yyyy' }}) </span>
+		      			<a ng-click="$ctrl.deletePhase(prg.id, ph.id)" style='cursor : pointer'>Delete</a>	
+		      		</li>
+		      	  </ul>
+			    </div>
+			  </div>
+		  </div>
+		</div>
+	</div>	
+</div>
+
+<div class="row marketing">
+	<div class="col-lg-12 col-sm-12">
+		<div>
+		  <p class="bg-primary" style="padding: 10px;">Employees</p>
+		</div>
+		<table class="table table-hover">
+		  <thead> 
+		    <tr> 
+		      <th>#</th>
+		      <th>First Name</th>
+		      <th>Last Name</th>
+		      <th>BarthDate</th>
+		      <th>Primary Skill</th>
+		      <th>Level</th>
+		      <th>Manager</th>  
+		    </tr> 
+		  </thead>
+		  <tbody>
+		  	<tr ng-repeat="user in $ctrl.employees track by $index"> 
+		      <td>{{ $index }}</td>
+		      <td>{{ user.firstName }}</td>
+		      <td>{{ user.lastName }}</td>
+		      <td>{{ user.birthDate | date:'dd/MM/yyyy' }}</td>
+		      <td>{{ user.primarySkill }}</td>
+		      <td>{{ user.level }}</td>
+		      <td>{{ user.manager }}</td>  
+		    </tr> 
+		  </tbody>
+		</table>
+	</div>
+</div>
+
