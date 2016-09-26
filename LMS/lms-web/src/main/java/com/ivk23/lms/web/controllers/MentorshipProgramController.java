@@ -92,6 +92,16 @@ public class MentorshipProgramController {
 			// :)
 		}
 
+		@Override
+		public String getCreatedBy() {
+			return null;
+		}
+
+		@Override
+		public Date getCreationDate() {
+			return null;
+		}
+
 	}
 
 	private static class Phase implements IPhase {
@@ -160,6 +170,17 @@ public class MentorshipProgramController {
 				@Override
 				public void setPhases(List<IPhase> l) {
 				}
+
+				@Override
+				public String getCreatedBy() {
+					return null;
+				}
+
+				@Override
+				public Date getCreationDate() {
+					return null;
+				}
+
 			};
 		}
 

@@ -11,12 +11,14 @@ public interface EmployeeRepository extends Repository<Employee, Long> {
 	
 	public List<IEmployee> findAll();
 	
-	public List<IEmployee> findByLastName(String lastName);
+	public List<IEmployee> findByLastNameStartingWith(String lastName);
 	
 	public List<IEmployee> findByPrimarySkill(String primarySkill);
 	
 	public IEmployee save(IEmployee employee);
 	
 	public void delete(IEmployee employee);
+	
+	public IEmployee findById(Long id);
 
 }

@@ -39,6 +39,18 @@ public class MentorshipProgram implements IMentorshipProgram, Serializable {
 	@Column(name = "end_date", nullable = false)
 	private Date endDate;
 	
+	@Column(name = "created_by", nullable = true)
+	private String createdBy;
+	
+	@Column(name = "creation_date", nullable = true)
+	private Date creationDate;
+	
+	@Column(name = "last_modif_by", nullable = true)
+	private String lastModifiedBy;
+	
+	@Column(name = "last_modif_date", nullable = true)
+	private Date lastModificationDate;
+	
 	@Transient
 	private List<IPhase> phases;
 	
@@ -108,6 +120,40 @@ public class MentorshipProgram implements IMentorshipProgram, Serializable {
 	public void setPhases(List<IPhase> phases) {
 		this.phases = phases;
 		
+	}
+	
+	@Override
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedByUser(String createdByUser) {
+		this.createdBy = createdByUser;
+	}
+
+	@Override
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Date getLastModificationDate() {
+		return lastModificationDate;
+	}
+
+	public void setLastModificationDate(Date lastModificationDate) {
+		this.lastModificationDate = lastModificationDate;
 	}
 
 	@Override

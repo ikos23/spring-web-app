@@ -11,6 +11,7 @@
 		        <h3>{{ prg.name }}</h3>
 		        <p>Office: {{ prg.office }}</p>
 		        <p>Period : {{ prg.startDate | date:'dd/MM/yyyy' }} - {{ prg.endDate | date:'dd/MM/yyyy' }}</p>
+		        <p>Creation Date: {{ prg.creationDate | date:'dd/MM/yyyy @ HH:mm' }} Created by : {{ prg.createdBy }}</p>
 		      </div>
 		      
 		      <a class="btn btn-primary btn-sm" role="button" data-toggle="collapse" data-target="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample{{$index}}" style="margin-left: 10px;">

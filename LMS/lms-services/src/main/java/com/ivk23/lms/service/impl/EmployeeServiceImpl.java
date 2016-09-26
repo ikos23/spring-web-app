@@ -30,15 +30,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public IEmployee addEmployee(IEmployee employee) {
-		Employee entity = new Employee(employee.getFirstName(), 
+		IEmployee entity = new Employee(employee.getFirstName(), 
 				employee.getLastName(), employee.getBirthDate(), employee.getLevel(), 
 					employee.getPrimarySkill(), employee.getManager());
 		return employeeRepository.save(entity);
 	}
 	
 	@Override
-	public List<IEmployee> findEmployeesByLastName(String lastName) {
-		return employeeRepository.findByLastName(lastName);
+	public List<IEmployee> findEmployeesByLastNameStartingWith(String lastName) {
+		return employeeRepository.findByLastNameStartingWith(lastName);
+	}
+
+	@Override
+	public IEmployee updateEmployeeData(Long id, String lastName, String primarySkill, String level, String manager) {
+		Employee toBeUpdated = (Employee)employeeRepository.findById(id);
+		
+		if (!toBeUpdated.getLastName().equals(lastName)) {
+			toBeUpdated.setLastName(lastName);
+		}
+		
+		if (!toBeUpdated.getPrimarySkill().equals(primarySkill)) {
+			toBeUpdated.setPrimarySkill(primarySkill);
+		}
+		
+		if (!toBeUpdated.getLevel().equals(level)) {
+			toBeUpdated.setLevel(level);
+		}
+		
+		if (toBeUpdated.getManager() != manager.charAt(0)) {
+			toBeUpdated.setManager(manager.charAt(0));
+		}
+		
+		return employeeRepository.save(toBeUpdated);
 	}
 
 }

@@ -10,6 +10,19 @@ public interface EmployeeService {
 	
 	public IEmployee addEmployee(IEmployee employee);
 
-	public List<IEmployee> findEmployeesByLastName(String lastName);
+	public List<IEmployee> findEmployeesByLastNameStartingWith(String lastName);
+	
+	/**
+	 * <ul>
+	 * <li>LastName can be updated.</li>
+	 * <li>Level can be updated.</li>
+	 * <li>Primary Skill can be updated.</li>
+	 * <li>Is Manager - can be updated.</li>
+	 * </ul>
+	 * 
+	 * Updates for all other fields are forbidden !
+	 */
+	public IEmployee updateEmployeeData(Long id, String lastName, 
+			String primarySkill, String level, String manager);
 
 }

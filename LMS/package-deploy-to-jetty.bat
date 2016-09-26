@@ -1,7 +1,7 @@
 cd /d E:\Edu\Java D3\LMS
 
 call color 1F
-call mode con: cols=100 lines=35
+call mode con: cols=90 lines=35
 call mvn clean package -DskipTests
 
 call cd /d E:\Edu\Java D3\jetty-distribution-9.3.11.v20160721\webapps
@@ -18,4 +18,4 @@ copy /Y "E:\Edu\Java D3\LMS\lms-web\target\lms-web.war" "E:\Edu\Java D3\jetty-di
 echo "---------------------------------------------"
 echo "---------------------------------------------"
 
-
+pause

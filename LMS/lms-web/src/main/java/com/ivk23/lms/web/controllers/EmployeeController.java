@@ -1,13 +1,16 @@
 package com.ivk23.lms.web.controllers;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ivk23.lms.commons.interfaces.IEmployee;
@@ -31,6 +34,32 @@ public class EmployeeController {
 		return employeeService.findAllEmployees();
 	}
 	
+	@RequestMapping(value = "/edit", method = GET)
+	public String edit(Model model) {
+		List<IEmployee> employees = employeeService.findAllEmployees();
+		
+		model.addAttribute("employees", employees);
+		
+		return "tl/editPage";
+	}
 	
+	@RequestMapping(value = "/updateEmpl", method = POST)
+	public String updateUser(@RequestParam("eID") String id, @RequestParam("lastName") String lastName,
+			@RequestParam("primarySkill") String skill, @RequestParam("level") String level, 
+				@RequestParam("manager") String manager) {
+		
+		employeeService.updateEmployeeData(Long.valueOf(id), lastName, skill, level, manager);
+		
+		return "redirect:/";
+		
+	}
+	
+	@RequestMapping(value = "/selectEmpl", method = POST, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE } )
+	@ResponseBody
+	public List<IEmployee> selectEmployee(@RequestParam("namePrefix") String lastNamePrefix) {
+		List<IEmployee> employeesByLastName = employeeService.findEmployeesByLastNameStartingWith(lastNamePrefix);
+		 
+		return employeesByLastName;
+	}
 
 }

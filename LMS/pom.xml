@@ -11,6 +11,7 @@
 	<modules>
 		<module>lms-commons</module>
 		<module>lms-dao</module>
+		
 		<module>lms-services</module>
 		<module>lms-web</module>
 	</modules>

@@ -33,7 +33,7 @@ public class MentorshipProgramServiceImpl implements MentorshipProgramService {
 
 	@Override
 	public IMentorshipProgram createNewProgram(IMentorshipProgram program) {
-		MentorshipProgram entity = new MentorshipProgram(program.getName(), program.getOffice(), program.getStartDate(),
+		IMentorshipProgram entity = new MentorshipProgram(program.getName(), program.getOffice(), program.getStartDate(),
 				program.getEndDate());
 
 		return mtRepository.save(entity);
@@ -49,7 +49,7 @@ public class MentorshipProgramServiceImpl implements MentorshipProgramService {
 	public IPhase createNewPhase(IPhase phase) {
 		IMentorshipProgram mentorshipProgram = mtRepository.findById(phase.getMentorshipProgram().getId());
 
-		Phase entity = new Phase(phase.getName(), (MentorshipProgram) mentorshipProgram, phase.getStartDate(),
+		IPhase entity = new Phase(phase.getName(), (MentorshipProgram) mentorshipProgram, phase.getStartDate(),
 				phase.getEndDate());
 		return phaseRepository.save(entity);
 	}

@@ -5,18 +5,22 @@ import java.util.List;
 
 public interface IMentorshipProgram {
 	
-	public Long getId();
+	Long getId();
 	
-	public String getName();
+	String getName();
 	
-	public String getOffice();
+	String getOffice();
 	
-	public Date getStartDate();
+	Date getStartDate();
 	
-	public Date getEndDate();
+	Date getEndDate();
 	
-	public List<IPhase> getPhases();
+	List<IPhase> getPhases();
 	
-	public void setPhases(List<IPhase> phases);
+	void setPhases(List<IPhase> phases);
+
+	String getCreatedBy();
+
+	Date getCreationDate();
 
 }
