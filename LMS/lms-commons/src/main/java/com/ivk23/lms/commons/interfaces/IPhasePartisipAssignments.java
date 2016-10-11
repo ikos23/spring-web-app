@@ -10,4 +10,6 @@ public interface IPhasePartisipAssignments {
 
 	String getStatus();
 
+	IPhase getPhase();
+
 }

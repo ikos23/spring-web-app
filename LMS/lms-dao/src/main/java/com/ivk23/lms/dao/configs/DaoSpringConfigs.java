@@ -4,6 +4,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -16,6 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableJpaRepositories("com.ivk23.lms.dao.repository")
+@ComponentScan("com.ivk23.lms.dao.repository") // to be able to find custom repositories
 public class DaoSpringConfigs {
 	
 	// embedded DB is used for development
@@ -32,7 +34,7 @@ public class DaoSpringConfigs {
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter hibernateAdaptor = new HibernateJpaVendorAdapter();
 		hibernateAdaptor.setGenerateDdl(false);
-		hibernateAdaptor.setShowSql(true);
+		hibernateAdaptor.setShowSql(false);
 		
 		return hibernateAdaptor;
 	}

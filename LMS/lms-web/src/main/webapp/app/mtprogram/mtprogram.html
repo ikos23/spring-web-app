@@ -1,11 +1,11 @@
 <div class="row marketing">
 
-	<div class="col-lg-12 col-sm-12" ng-show="$ctrl.wasSuccessful">
+	<div class="col-lg-12 col-sm-12 successAlertDiv" ng-show="$ctrl.wasSuccessful">
  	  <div>
 	    <div class="bg-success" style="padding-top: 10px;padding-bottom: 30px;margin-bottom: 5px;">
 	    	<div class="col-lg-6 col-sm-6"><strong>Created successfully.</strong></div>
 	    	<div class="col-lg-6 col-sm-6" style="text-align: right;">
-	    		<a ng-click="$ctrl.changeSuccAlertState(false)" style="color: #5a5a5a; font-weight: bold; cursor:pointer;"> X </a>
+	    		<a id="succAlertMsgCloseId" ng-click="$ctrl.changeSuccAlertState(false)" style="color: #5a5a5a; font-weight: bold; cursor:pointer;"> X </a>
 	    	</div>
 	    </div>
 	  </div>
@@ -20,7 +20,7 @@
 	  <div class="panel panel-primary">
 	    <div class="panel-heading" role="tab" id="headingOne">
 	      <h4 class="panel-title">
-	        <a role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	        <a id="createProgramPanelOpenLinkId" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 	          Create new mentorship program
 	        </a>
 	      </h4>
@@ -44,7 +44,7 @@
 				<label for="endDateId">End Date</label>
 				<input type="date" class="form-control" id="endDateId" ng-model="program.endDate" />
 			  </div> 
-			  <input type="submit" class="btn btn-primary" ng-click="$ctrl.create(program)" value="Create" />
+			  <input type="submit" class="btn btn-primary" ng-click="$ctrl.create(program)" value="Create" id="submitCreateBtnId" />
 			</form>	
 	      </div>
 	    </div>
@@ -53,7 +53,7 @@
 	  <div class="panel panel-primary">
 	    <div class="panel-heading" role="tab" id="headingTwo">
 	      <h4 class="panel-title">
-	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	        <a id="addNewPhasePanelOpenBtnId" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 	          Add new phase
 	        </a>
 	      </h4>
@@ -79,7 +79,7 @@
 				<label for="pendDateId">End Date</label>
 				<input type="date" class="form-control" id="pendDateId" ng-model="phase.endDate" />
 			  </div> 
-			  <input type="submit" class="btn btn-primary" ng-click="$ctrl.createPhase(phase)" value="Create" />
+			  <input id="createPhaseSubmitBtn" type="submit" class="btn btn-primary" ng-click="$ctrl.createPhase(phase)" value="Create" />
 			</form>
 	      </div>
 	    </div>

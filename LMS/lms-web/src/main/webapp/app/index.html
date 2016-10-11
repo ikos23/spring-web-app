@@ -23,9 +23,10 @@
 		<div class="header clearfix">
 			<nav>
 				<ul class="nav nav-pills pull-right">
-					<li role="presentation"><a href="/lms-web/#/">Home</a></li>
-					<li role="presentation"><a href="/lms-web/#/mtprogram">Mentorship Programs</a></li>
-					<li role="presentation"><a href="/lms-web/edit">Edit</a></li>
+					<li role="presentation"><a id="navHomeId" href="/lms-web/#/">Home</a></li>
+					<li role="presentation"><a id="navMentProgId" href="/lms-web/#/mtprogram">Mentorship Programs</a></li>
+					<li role="presentation"><a id="navEditId" href="/lms-web/edit">Edit</a></li>
+					<li role="presentation"><a id="navEditPhaseId" href="/lms-web/editPhase">Program Phase Configurator</a></li>
 				</ul>
 			</nav>
 			<h3 class="text-muted">LMS</h3>
@@ -35,15 +36,17 @@
         
         <div>
         	<h4>Available services:</h4>
-        	<a href="http://localhost:8080/lms-web/employees/json" target="_blank">http://localhost:8080/lms-web/employees/json (All employees JSON)</a><br />
-        	<a href="http://localhost:8080/lms-web/employees/xml" target="_blank">http://localhost:8080/lms-web/employees/xml (All employess XML)</a><br />
-        	<a href="http://localhost:8080/lms-web/mtprograms/all/json" target="_blank">http://localhost:8080/lms-web/mtprograms/all/json (All mentorship programs JSON)</a><br />
-        	<a href="http://localhost:8080/lms-web/mtprograms/all/xml" target="_blank">http://localhost:8080/lms-web/mtprograms/all/xml (All mentorship programs XML)</a><br />
-        	<a href="http://localhost:8080/lms-web/phases/all/json" target="_blank">http://localhost:8080/lms-web/phases/all/json (All phases XML)</a><br />
-        	<a href="http://localhost:8080/lms-web/refdata/all/json/statuses" target="_blank">http://localhost:8080/lms-web/refdata/all/json/{type} (Ref Data JSON, {type} can be roles or statuses)</a><br />
-        	<a href="http://localhost:8080/lms-web/refdata/all/xml/statuses" target="_blank">http://localhost:8080/lms-web/refdata/all/xml/{type} (Ref Data XML, {type} can be roles or statuses)</a><br />
-        	<a href="http://localhost:8080/lms-web/refdata/all/html/statuses" target="_blank">http://localhost:8080/lms-web/refdata/all/html/{type} (Ref Data HTML, {type} can be roles or statuses)</a><br />
-        	<a href="http://localhost:8080/lms-web/logs/all/xml">http://localhost:8080/lms-web/logs/all/xml (LOGS in xml)</a>
+        	<a href="http://localhost:8080/lms-web/employees/json" target="_blank">Get list of all employees in JSON)</a><br />
+        	<a href="http://localhost:8080/lms-web/employees/xml" target="_blank">Get list of all employees in XML</a><br />
+        	<a href="http://localhost:8080/lms-web/mtprograms/all/json" target="_blank">Get all mentorship programs in JSON)</a><br />
+        	<a href="http://localhost:8080/lms-web/mtprograms/all/xml" target="_blank">Get all mentorship programs in XML)</a><br />
+        	<a href="http://localhost:8080/lms-web/phases/all/json" target="_blank">All phases (Each Program consists of 1..* phases))</a><br />
+        	<a href="http://localhost:8080/lms-web/refdata/all/json/statuses" target="_blank">Get reference data in JSON (Ref Data JSON, {type} can be roles or statuses)</a><br />
+        	<a href="http://localhost:8080/lms-web/refdata/all/xml/statuses" target="_blank">Get reference data in XML  (Ref Data XML, {type} can be roles or statuses)</a><br />
+        	<a href="http://localhost:8080/lms-web/refdata/all/html/statuses" target="_blank">Get reference data in HTML  (Ref Data HTML, {type} can be roles or statuses)</a><br />
+        	<a href="http://localhost:8080/lms-web/logs/all/xml" target="_blank">Get logs (in xml)</a><br />
+        	<a href="http://localhost:8080/lms-web/get/allAssignments/xml" target="_blank">Get assignments (Assignment is an Employee-Role relationship for particular phase)</a><br />
+        	<a href="http://localhost:8080/lms-web/get/by/duration" target="_blank">Get mentees with overall duration in programs (in days)</a>
         </div>
     
     </div>

@@ -34,6 +34,10 @@ public class PhasePartisipAssignments implements IPhasePartisipAssignments, Seri
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "phase_id", nullable = false)
+	private Phase phase;
+	
 	@Column(name = "status", nullable = false)
 	private String status;
 
@@ -55,6 +59,15 @@ public class PhasePartisipAssignments implements IPhasePartisipAssignments, Seri
 	@Override
 	public String getStatus() {
 		return status;
+	}
+
+	@Override
+	public Phase getPhase() {
+		return phase;
+	}
+
+	public void setPhase(Phase phase) {
+		this.phase = phase;
 	}
 
 	public void setId(Long id) {

@@ -22,11 +22,31 @@ import com.ivk23.lms.commons.interfaces.IGroup;
 public class Group implements IGroup, Serializable {
  
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_BY_MENTEE_NUMBERS = "findMentorsByMenteeNumbers";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GRP_SEQ")
 	private Long id;
 	
+	public Group() {
+		super();
+	}
+	
+	public Group(Employee mentor, Employee mentee, Date palnnedStartDate, Date palnnedEndDate,
+			Date actualStartDate, Date actualEndDate, Status status) {
+		super();
+		this.mentor = mentor;
+		this.mentee = mentee;
+		this.palnnedStartDate = palnnedStartDate;
+		this.palnnedEndDate = palnnedEndDate;
+		this.actualStartDate = actualStartDate;
+		this.actualEndDate = actualEndDate;
+		this.status = status;
+	}
+
+
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mentor_id", nullable = false)
 	private Employee mentor;
@@ -41,15 +61,18 @@ public class Group implements IGroup, Serializable {
 	@Column(name = "planned_end", nullable = false)
 	private Date palnnedEndDate;
 	
-	@Column(name = "actual_start", nullable = false)
+	@Column(name = "actual_start", nullable = true)
 	private Date actualStartDate;
 	
-	@Column(name = "actual_end", nullable = false)
+	@Column(name = "actual_end", nullable = true)
 	private Date actualEndDate;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "status_id", nullable = false)
+	@JoinColumn(name = "status_id", nullable = true)
 	private Status status;
+	
+	@Column(name = "duration")
+	private Integer duration;
 
 	@Override
 	public Long getId() {
@@ -89,6 +112,15 @@ public class Group implements IGroup, Serializable {
 	@Override
 	public Status getStatus() {
 		return status;
+	}
+	
+	@Override
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
 	}
 
 	public void setStatus(Status status) {

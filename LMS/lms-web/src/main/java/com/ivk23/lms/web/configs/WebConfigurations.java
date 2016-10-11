@@ -1,29 +1,28 @@
 package com.ivk23.lms.web.configs;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.format.datetime.DateFormatter;
-import org.springframework.format.datetime.DateFormatterRegistrar;
-import org.springframework.format.number.NumberFormatAnnotationFormatterFactory;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.IExpressionContext;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.standard.StandardDialect;
+import org.thymeleaf.standard.expression.IStandardConversionService;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
-
-import com.ivk23.lms.commons.utils.DateUtils;
 
 @Configuration
 @EnableWebMvc
@@ -56,6 +55,12 @@ public class WebConfigurations extends WebMvcConfigurerAdapter implements Applic
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
+		
+		StandardDialect sd = new StandardDialect();
+		sd.setConversionService(customConvertService());
+	 
+		engine.setDialect(sd);
+		
 		return engine;
 	}
 
@@ -71,7 +76,6 @@ public class WebConfigurations extends WebMvcConfigurerAdapter implements Applic
 		
 		return resolver;
 	}
-	
 	
 	/* ================================================================================================= */
 	
@@ -90,22 +94,43 @@ public class WebConfigurations extends WebMvcConfigurerAdapter implements Applic
 	}
 
 	// have no idea what for x_x. at least it does not break anything
-	@Bean
-	public FormattingConversionService dateConvertService() {
-
-		// Use the DefaultFormattingConversionService but do not register
-		// defaults
-		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService(false);
-
-		// Ensure @NumberFormat is still supported
-		conversionService.addFormatterForFieldAnnotation(new NumberFormatAnnotationFormatterFactory());
-
-		// Register date conversion with a specific global format
-		DateFormatterRegistrar registrar = new DateFormatterRegistrar();
-		registrar.setFormatter(new DateFormatter(DateUtils.DATE_FORMAT));
-		registrar.registerFormatters(conversionService);
-
-		return conversionService;
+//	@Bean
+//	public FormattingConversionService dateConvertService() {
+//
+//		// Use the DefaultFormattingConversionService but do not register
+//		// defaults
+//		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService(false);
+//
+//		// Ensure @NumberFormat is still supported
+//		conversionService.addFormatterForFieldAnnotation(new NumberFormatAnnotationFormatterFactory());
+//
+//		// Register date conversion with a specific global format
+//		DateFormatterRegistrar registrar = new DateFormatterRegistrar();
+//		registrar.setFormatter(new DateFormatter(DateUtils.DATE_FORMAT));
+//		registrar.registerFormatters(conversionService);
+//
+//		return conversionService;
+//	}
+	
+	private IStandardConversionService customConvertService() {
+		return new IStandardConversionService() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			public <T> T convert(IExpressionContext context, Object object, Class<T> targetClass) {
+				if (targetClass.equals(String.class)) {
+					if (object == null || object instanceof String) {
+		                return (T) object;
+		            }
+					
+					if (object instanceof Date) {
+		            	return (T) new SimpleDateFormat("dd/MM/yyyy").format((Date)object);
+		            }
+		        }
+				
+				throw new IllegalArgumentException("No available conversion for target class \"" + targetClass.getName() + "\"");
+			}
+		};
 	}
 
 }

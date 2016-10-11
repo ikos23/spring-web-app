@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public List<IEmployee> findEmployeesByLastNameStartingWith(String lastName) {
-		return employeeRepository.findByLastNameStartingWith(lastName);
+		return employeeRepository.findByLastNameStartingWithIgnoreCase(lastName);
 	}
 
 	@Override

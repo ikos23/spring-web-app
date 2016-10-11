@@ -11,7 +11,7 @@ public interface EmployeeRepository extends Repository<Employee, Long> {
 	
 	public List<IEmployee> findAll();
 	
-	public List<IEmployee> findByLastNameStartingWith(String lastName);
+	public List<IEmployee> findByLastNameStartingWithIgnoreCase(String lastName);
 	
 	public List<IEmployee> findByPrimarySkill(String primarySkill);
 	
