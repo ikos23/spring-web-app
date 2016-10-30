@@ -33,10 +33,12 @@ public class MentorshipProgramServiceImpl implements MentorshipProgramService {
 
 	@Override
 	public IMentorshipProgram createNewProgram(IMentorshipProgram program) {
-		IMentorshipProgram entity = new MentorshipProgram(program.getName(), program.getOffice(), program.getStartDate(),
+		final IMentorshipProgram entity = new MentorshipProgram(program.getName(), program.getOffice(), program.getStartDate(),
 				program.getEndDate());
 
-		return mtRepository.save(entity);
+		final IMentorshipProgram savedEntity = mtRepository.save(entity);
+		
+		return savedEntity;
 	}
 
 	@Override
@@ -60,7 +62,7 @@ public class MentorshipProgramServiceImpl implements MentorshipProgramService {
 	}
 	
 	@Override
-	public List<IMentorshipProgram> getActiveProgramsWithPhases() {
+	public List<IMentorshipProgram> getActivePrograms(boolean includePhases) {
 		// if program's endDate >= today - program is still active
 		List<IMentorshipProgram> active = mtRepository.findByEndDateGreaterThanEqualOrderByStartDateDesc(new Date());
 		

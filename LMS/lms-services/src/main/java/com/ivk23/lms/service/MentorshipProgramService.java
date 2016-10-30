@@ -17,7 +17,7 @@ public interface MentorshipProgramService {
 	
 	public List<IPhase> findAllPhases();
 
-	public List<IMentorshipProgram> getActiveProgramsWithPhases();
+	public List<IMentorshipProgram> getActivePrograms(boolean includePhases);
 
 	public List<IPhase> getPhasesForProgram(Long id);
 

@@ -11,7 +11,7 @@ insert into Status(id, name) values (3, 'finished ');
 insert into Status(id, name) values (4, 'cancelled');
 
 /* Test users */
-insert into Employee(id, first_name, last_name, birth_date, emp_level, prim_skill, is_manager) values (1, 'Панас', 'Мирний', '1990-02-25', 'L2', 'Java', 'N');
+insert into Employee(id, first_name, last_name, birth_date, emp_level, prim_skill, is_manager) values (1, 'Р†РІР°РЅ', 'Р†РІР°РЅРѕРІ', '1990-02-25', 'L2', 'Java', 'N');
 insert into Employee(id, first_name, last_name, birth_date, emp_level, prim_skill, is_manager) values (2, 'Bill', 'Gates', '1955-10-28', 'L5', 'Java', 'Y');
 insert into Employee(id, first_name, last_name, birth_date, emp_level, prim_skill, is_manager) values (3, 'Kurt', 'Cobain', '1967-02-20', 'L2', 'JavaScript', 'N');
 insert into Employee(id, first_name, last_name, birth_date, emp_level, prim_skill, is_manager) values (4, 'Bart', 'Simpson', '1997-12-02', 'T2', 'Java', 'N');

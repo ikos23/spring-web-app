@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ivk23.lms.commons.interfaces.IPhase;
 
 @Entity
@@ -32,6 +33,7 @@ public class Phase implements IPhase, Serializable {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mt_program_id")
+	@JsonIgnore
 	private MentorshipProgram mentorshipProgram;
 	
 	@Column(name = "start_date")

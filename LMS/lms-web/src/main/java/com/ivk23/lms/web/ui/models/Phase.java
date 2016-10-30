@@ -2,15 +2,27 @@ package com.ivk23.lms.web.ui.models;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.ivk23.lms.commons.interfaces.IMentorshipProgram;
 import com.ivk23.lms.commons.interfaces.IPhase;
 
 public class Phase implements IPhase {
 	
 	private Long id;
+	
+	@NotNull(message = "Phase name can not be empty")
+	@Size(min = 2, max = 25, message = "Phase name length must be between 2 and 25 characters")
 	private String name;
+	
+	@NotNull(message = "Phase Start Date can not be empty")
 	private Date startDate;
+	
+	@NotNull(message = "Phase End Date can not be empty")
 	private Date endDate;
+	
+	@NotNull(message = "Program is not selected")
 	private Long programID;
 	
 	public Phase() {

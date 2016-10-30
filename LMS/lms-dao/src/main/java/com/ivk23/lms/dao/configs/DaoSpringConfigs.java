@@ -25,7 +25,8 @@ public class DaoSpringConfigs {
 	public DataSource dataSource() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		
-		builder.addDefaultScripts();
+		// auto configuration will execute this instead 
+		//builder.addDefaultScripts();
 		
 		return builder.setType(EmbeddedDatabaseType.H2).build();
 	}

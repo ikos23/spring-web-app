@@ -1,0 +1,100 @@
+<div id="pageContent">
+<div class="jumbotron">
+    <h1>Learning Management System</h1>
+    <p class="lead">New platform for managing mentorship programs. Hold all the information in one place. Creating groups,
+    programs, tracking progress and sharing results has never been so easy.</p>
+    <p><a class="btn btn-lg btn-success" href="#" role="button">Read news</a></p>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Manage Programs</h2>
+      <p>Create new mentorship programs for different locations, add phases to the existing ones, assign roles, etc.</p>
+      <p><a class="btn btn-primary" href="#" data-th-href="@{/programs}" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Manage Employees</h2>
+      <p>Review employees, update employee's information, etc.</p>
+      <p><a class="btn btn-primary" href="#" data-th-href="@{/employees}" role="button">View details &raquo;</a></p>
+   </div>
+    <div class="col-lg-4">
+      <h2>System API</h2>
+      <p>Get list of services provided by the system to fetch different data in JSON/XML/HTML formats.</p>
+      <p><a class="btn btn-primary" href="#" data-th-href="@{/sysapi}" role="button">View details &raquo;</a></p>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <div class="panel panel-warning" style="margin-top: 35px; margin-left: 15px; margin-right: 15px;">
+      <div class="panel-heading">
+        <h3 class="panel-title"><b>Active Programs</b></h3>
+      </div>
+      <div class="panel-body">
+      <div class="col-lg-3 col-md-4" data-th-each="prog, iterStatus : ${activePrograms}">
+		  <h3 data-th-text="${prog.name}">Program Name</h3>
+		  <p>Program Location: <span data-th-text="${prog.office}"></span></p>
+		  <p>
+		    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-th-attr="data-target=${'#myModal' + iterStatus.index}"  data-th-id="${'phasesBtn' + iterStatus.index + 'Id'}">
+	            Details &raquo; 
+	        </button>
+	      </p>
+		  
+		  <div class="modal fade" data-th-id="${'myModal' + iterStatus.index}" tabindex="-1" role="dialog" data-th-attr="aria-labelledby=${'myModalLabel' +  iterStatus.index}">
+		    <div class="modal-dialog" role="document">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		          <h4 class="modal-title" data-th-id="${'myModalLabel' + iterStatus.index}">Program Information</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div>
+		            <table class="table">
+					  <tbody>
+					    <tr class="info">
+					      <td>Office</td>
+					      <td><span data-th-text="${prog.office}">office</span></td>
+					    </tr>
+					    <tr>
+					      <td>Start Date</td>
+					      <td><span data-th-text="${#dates.format(prog.startDate, 'dd/MMM/yyyy HH:mm')}">start date</span></td>
+					    </tr>
+					    <tr class="info">
+					      <td>End Date</td>
+					      <td><span data-th-text="${#dates.format(prog.endDate, 'dd/MMM/yyyy HH:mm')}">end date</span></td>
+					    </tr>
+					    <tr>
+					      <td>Program created </td>
+					      <td><span data-th-text="${#dates.format(prog.creationDate, 'dd/MM/yyyy HH:mm')}">dd-MM-yyyy</span> by <span data-th-text="${prog.createdBy}?: 'x_x'">user</span></td>
+					    </tr>
+					    <tr class="warning">
+					      <td>Phases </td>
+					      <td>
+					         
+					      	<div data-th-each="ph : ${prog.phases}">
+					      	  <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+					      	  <span class="label label-default"><span data-th-text="${ph.name}">Phase Name</span></span> from 
+					      	  <span class="label label-default"><span data-th-text="${#dates.format(ph.startDate, 'dd/MM/yyyy')}">Start Date</span></span> to 
+					      	  <span class="label label-default"><span data-th-text="${#dates.format(ph.endDate, 'dd/MM/yyyy')}">End Date</span></span>
+					      	  <span class="glyphicon glyphicon-remove delPhase" aria-hidden="true" style="color:red;" data-th-id="${'pid_' + ph.id}" title="Delete"></span>
+					      	</div>
+						       
+					      </td>
+					    </tr>
+					  </tbody>
+					</table>
+			      </div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+      </div>
+    </div>	
+	
+  </div>
+  
+ </div>

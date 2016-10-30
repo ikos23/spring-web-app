@@ -1,0 +1,53 @@
+<div id="autoCompleteFragment">
+<script data-th-inline="javascript">
+$(function () {	  
+    $( "#lastNameAutoComplete" ).autocomplete({
+      source: function (req, resp) {
+	    	$.ajax({
+    		  method: "POST",
+    		  url: "/lms-web/selectEmpl",
+    		  data: { namePrefix: req.term }
+    		}).done(function(data) {
+    			if (data.length == 0) {
+    			  $("#autoComplStatusID").empty();
+    			  $("#autoComplStatusID").append('No Results');
+    			} else {
+    			  $("#autoComplStatusID").empty();
+    			  $("#autoComplStatusID").append('<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green;"></span>');
+    			  resp(data);
+    			}
+    		});
+      },
+      focus: function( event, ui ) {
+    	
+    	[(${autoCompleteFocusHandler})](event,ui);  
+        
+        return false;
+      },
+      select: function( event, ui ) {
+    	
+    	[(${autoCompleteSelectHandler})](event,ui);
+    	  
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+        return $( "<li>" )
+          .append( "<div>" + item.lastName + "</div>" )
+          .appendTo( ul );
+    };
+    
+	
+});
+</script>
+
+<div class="col-lg-12 col-sm-12">
+  <div class="ui-widget">
+    <label for="lastNameAutoComplete">Enter Last Name: </label>
+    <input id="lastNameAutoComplete" placeholder="Enter Last Name First Letter e.g G" style="width: 350px;" />
+    <span id="autoComplStatusID"></span>
+  </div>
+</div>
+
+
+</div>

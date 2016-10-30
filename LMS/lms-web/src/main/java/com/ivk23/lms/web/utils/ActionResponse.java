@@ -5,6 +5,9 @@ import java.util.List;
 
 public class ActionResponse {
 
+	public static final ActionResponse EMPTY_200_RESPONSE = new ActionResponse().withCode(200)
+			.withMessage("Successfull response !");
+
 	private int httpStatusCode;
 	private String message;
 
@@ -16,12 +19,14 @@ public class ActionResponse {
 
 	/**
 	 * Add error. Param can't be null !
+	 * 
 	 * @param e
 	 */
-	public void addError(Error e) {
+	public ActionResponse addError(Error e) {
 		if (e != null) {
 			errors.add(e);
 		}
+		return this;
 	}
 
 	public boolean hasErrors() {

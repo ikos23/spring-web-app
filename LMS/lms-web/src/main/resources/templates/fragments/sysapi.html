@@ -1,0 +1,41 @@
+<div id="pageContent">
+<div class="row" style="padding-left: 20px;">
+<h3>Available Services</h3>
+<div class="list-group col-lg-6">
+
+  <a href="http://localhost:8080/lms-web/employees/json" target="_blank" class="list-group-item list-group-item-success">
+    <h4 class="list-group-item-heading">List of all employees</h4>
+    <p class="list-group-item-text">This service returns list of employees in JSON format. 
+    If XML format is required - just replace the last part of the URI <b>json</b> with <b>xml</b>.</p>
+  </a>
+  <a href="http://localhost:8080/lms-web/mtprograms/all/json" target="_blank" class="list-group-item list-group-item-info">
+    <h4 class="list-group-item-heading">List of mentorship programs</h4>
+    <p class="list-group-item-text">This service returns list of mentorship programs in JSON format.
+    If XML format is required - just replace the last part of the URI <b>json</b> with <b>xml</b>.</p>
+  </a>
+  <a href="http://localhost:8080/lms-web/phases/all/json" target="_blank" class="list-group-item list-group-item-warning">
+    <h4 class="list-group-item-heading">List of all phases</h4>
+    <p class="list-group-item-text">This service returns list of all phases in JSON format.</p>
+  </a>
+  <a href="http://localhost:8080/lms-web/refdata/all/json/statuses" target="_blank" class="list-group-item list-group-item-danger">
+    <h4 class="list-group-item-heading">Reference data service</h4>
+    <p class="list-group-item-text">This service can be used to get different reference data.
+    Supported formats are <b>json</b>, <b>xml</b> and <b>html</b>. To switch format just change
+    URI (e.g. ..../all/json/... to ..../all/xml/...). Available ref data : statuses and roles (URI end)</p>
+  </a>
+  <a href="http://localhost:8080/lms-web/logs/all/xml" target="_blank" class="list-group-item list-group-item-success">
+    <h4 class="list-group-item-heading">List of logs</h4>
+    <p class="list-group-item-text">Returns some logs in XML format.</p>
+  </a>
+  <a href="http://localhost:8080/lms-web/get/allAssignments/xml" target="_blank" class="list-group-item list-group-item-info">
+    <h4 class="list-group-item-heading">Get assignments</h4>
+    <p class="list-group-item-text">Assignment is an Employee-Role relationship for particular phase.</p>
+  </a>
+  <a href="http://localhost:8080/lms-web/get/by/duration" target="_blank" class="list-group-item list-group-item-warning">
+    <h4 class="list-group-item-heading">Get mentees with overall duration in programs (in days)</h4>
+    <p class="list-group-item-text">This service returns some information about mentees.</p>
+  </a>
+ 
+</div>
+</div>
+</div>

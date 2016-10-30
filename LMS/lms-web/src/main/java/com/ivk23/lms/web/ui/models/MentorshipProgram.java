@@ -3,16 +3,30 @@ package com.ivk23.lms.web.ui.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.ivk23.lms.commons.interfaces.IMentorshipProgram;
 import com.ivk23.lms.commons.interfaces.IPhase;
 
 public class MentorshipProgram implements IMentorshipProgram {
 	
 	private Long id;
+	
+	@NotNull(message = "Program name can not be empty")
+	@Size(min = 2, max = 20, message = "Program name length must be between 2 and 20 characters")
 	private String name;
+	
+	@NotNull(message = "Office field can not be empty")
+	@Size(min = 2, max = 15, message = "Office field length must be between 5 and 15 characters")
 	private String office;
+	
+	@NotNull(message = "Program Start Date can not be empty")
 	private Date startDate;
+	
+	@NotNull(message = "Program End Date can not be empty")
 	private Date endDate;
+	
 	private List<IPhase> phases;
 	
 	public MentorshipProgram() {

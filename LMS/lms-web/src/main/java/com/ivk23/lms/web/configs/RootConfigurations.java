@@ -15,5 +15,4 @@ import com.ivk23.lms.service.configs.ServiceSpringConfigs;
 @Import(value = { ServiceSpringConfigs.class })
 public class RootConfigurations {
 
-
 }

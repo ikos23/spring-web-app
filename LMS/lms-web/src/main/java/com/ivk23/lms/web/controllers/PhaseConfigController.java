@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,30 +17,16 @@ import com.ivk23.lms.commons.interfaces.IEmployee;
 import com.ivk23.lms.commons.interfaces.IGroup;
 import com.ivk23.lms.commons.interfaces.IPhasePartisipAssignments;
 import com.ivk23.lms.commons.utils.DateUtils;
-import com.ivk23.lms.service.MentorshipProgramService;
 import com.ivk23.lms.service.ParticipantsAndGroupsService;
-import com.ivk23.lms.service.ReferenceDataService;
 import com.ivk23.lms.web.ui.models.ParticipantAssignment;
+import com.ivk23.lms.web.utils.ActionResponse;
+import com.ivk23.lms.web.utils.Error;
 
 @Controller
 public class PhaseConfigController {
 
 	@Autowired
-	private ReferenceDataService refDataService;
-
-	@Autowired
-	private MentorshipProgramService programService;
-
-	@Autowired
 	private ParticipantsAndGroupsService partService;
-
-	@RequestMapping("/editPhase")
-	public String editPhase(Model model) {
-		model.addAttribute("roles", refDataService.getAllRoles());
-		model.addAttribute("phases", programService.findAllPhases());
-
-		return "tl/programPhaseConfigurator";
-	}
 
 	@RequestMapping(value = "/assignEmployee", method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
@@ -74,14 +59,18 @@ public class PhaseConfigController {
 	@RequestMapping(value = "/createGroup", method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	@ResponseBody
-	public IGroup createGroup(@RequestParam("menteeId") String menteeId,
+	public ActionResponse createGroup(@RequestParam("menteeId") String menteeId,
 			@RequestParam("mentorId") String mentorId, @RequestParam("plannedStart") String plannedStart,
 			@RequestParam("plannedEnd") String plannedEnd) throws NumberFormatException, ParseException {
 
-		 IGroup group = partService.createGroup(Long.valueOf(mentorId), Long.valueOf(menteeId), DateUtils.convert(plannedStart),
+		try { 
+			partService.createGroup(Long.valueOf(mentorId), Long.valueOf(menteeId), DateUtils.convert(plannedStart),
 				DateUtils.convert(plannedEnd), null, null);
-		return group;
-
+			return new ActionResponse().withCode(200).withMessage("New group created successfully.");
+		} catch (Exception e) {
+			return new ActionResponse().withCode(409).addError(new Error("Group was not created. Error " +  e.getMessage()));
+		}
+		
 	}
 	
 	@RequestMapping(value = "/get/all/groups/xml", method = RequestMethod.GET, produces = {
@@ -131,14 +120,17 @@ public class PhaseConfigController {
 			this.totalNumberOfDays = totalNumberOfDays;
 		}
 
+		@SuppressWarnings("unused")
 		public Long getMenteeID() {
 			return menteeID;
 		}
 
+		@SuppressWarnings("unused")
 		public String getFullName() {
 			return fullName;
 		}
 
+		@SuppressWarnings("unused")
 		public Long getTotalNumberOfDays() {
 			return totalNumberOfDays;
 		}
