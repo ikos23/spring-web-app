@@ -1,6 +1,6 @@
 # spring-web-app
 
-- Homework 5
+- Homework 6
 - Moved to Spring Boot
 - Web-module now uses Thymeleaf only
 
