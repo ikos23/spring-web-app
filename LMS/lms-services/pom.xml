@@ -12,31 +12,21 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.1.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />  
 	</parent>
 
 	<properties>
 		<maven.compiler.plg.version>3.5.1</maven.compiler.plg.version>
+		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		
 		<lms.dao.version>0.0.1</lms.dao.version>
 		<lms.commons.version>0.0.1</lms.commons.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.ivk23.lms.dao</groupId>
-			<artifactId>lms-dao</artifactId>
-			<version>${lms.dao.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.ivk23.lms.commons</groupId>
-			<artifactId>lms-commons</artifactId>
-			<version>${lms.commons.version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -47,6 +37,24 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.ivk23.lms.dao</groupId>
+			<artifactId>lms-dao</artifactId>
+			<version>${lms.dao.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.ivk23.lms.commons</groupId>
+					<artifactId>lms-commons</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ivk23.lms.commons</groupId>
+			<artifactId>lms-commons</artifactId>
+			<version>${lms.commons.version}</version>
+		</dependency>
 
 	</dependencies>
 
@@ -55,8 +63,14 @@
 
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plg.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

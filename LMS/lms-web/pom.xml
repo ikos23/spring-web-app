@@ -5,7 +5,7 @@
 
 	<groupId>com.ivk23.lms.web</groupId>
 	<artifactId>lms-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>lms-web</name>
@@ -58,6 +58,12 @@
 			<groupId>com.ivk23.lms.services</groupId>
 			<artifactId>lms-services</artifactId>
 			<version>${lms.servcies.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.ivk23.lms.commons</groupId>
+					<artifactId>lms-commons</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.ivk23.lms.commons</groupId>
@@ -97,6 +103,8 @@
 	</dependencies>
 
 	<build>
+		<finalName>lms-web-${project.version}</finalName>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

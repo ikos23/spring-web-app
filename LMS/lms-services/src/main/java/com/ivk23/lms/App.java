@@ -1,3 +1,6 @@
+// this module is going to be used as a jar lib and don't need main class
+
+/*
 package com.ivk23.lms;
 
 import org.springframework.boot.CommandLineRunner;
@@ -29,3 +32,4 @@ public class App {
 
 	}
 }
+*/
