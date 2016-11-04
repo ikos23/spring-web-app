@@ -12,6 +12,7 @@
 		<module>lms-dao</module>
 		<module>lms-services</module>
 		<module>lms-web</module>
+		<module>lms-msg</module>
 	</modules>
 
 <build> 

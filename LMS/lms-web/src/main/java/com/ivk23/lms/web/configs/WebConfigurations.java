@@ -1,36 +1,24 @@
-// Spring Boot Auto-configs completely replace these !
+// Spring Boot Auto-configs almost completely replace these configs!
+// Some configs were overridden for Spring Security :)
 
-//package com.ivk23.lms.web.configs;
-//
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-//
-//import org.springframework.beans.BeansException;
-//import org.springframework.context.ApplicationContext;
-//import org.springframework.context.ApplicationContextAware;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.ComponentScan;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.web.servlet.ViewResolver;
-//import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-//import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-//import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-//import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-//import org.springframework.web.servlet.view.InternalResourceViewResolver;
-//import org.thymeleaf.TemplateEngine;
-//import org.thymeleaf.context.IExpressionContext;
-//import org.thymeleaf.spring4.SpringTemplateEngine;
-//import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
-//import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-//import org.thymeleaf.standard.StandardDialect;
-//import org.thymeleaf.standard.expression.IStandardConversionService;
-//import org.thymeleaf.templatemode.TemplateMode;
-//import org.thymeleaf.templateresolver.ITemplateResolver;
-//
-//@Configuration
+package com.ivk23.lms.web.configs;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+@Configuration
 //@EnableWebMvc
 //@ComponentScan(basePackages = { "com.ivk23.lms.web.controllers", "com.ivk23.lms.web.validators" })
-//public class WebConfigurations extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+public class WebConfigurations extends WebMvcConfigurerAdapter /* implements ApplicationContextAware */ {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    }
+
 //	
 //	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
 //		    "classpath:/static/", "classpath:/templates/" , "classpath:/templates/views/", "classpath:/static/images/", "classpath:/static/css/"};
@@ -145,4 +133,4 @@
 //		};
 //	}
 //
-//}
+}

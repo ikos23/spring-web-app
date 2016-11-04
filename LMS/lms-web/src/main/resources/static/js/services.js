@@ -21,6 +21,9 @@ function callPOSTService(serviceURL, reqData, successHandler, errorHandler, ajax
 	beforeSend: function(xhr) {
 	  xhr.setRequestHeader("Accept", "application/json");
       xhr.setRequestHeader("Content-Type", "application/json");
+      var token = $("meta[name='_csrf']").attr("content");
+      var header = $("meta[name='_csrf_header']").attr("content");
+      xhr.setRequestHeader(header, token);
     },
     success : function(data) {
       if (typeof data.httpStatusCode == 'undefined') {
@@ -76,6 +79,9 @@ function callDELETEService(serviceURL, successHandler, ajaxFailHandler) {
 	beforeSend: function(xhr) {
 	  xhr.setRequestHeader("Accept", "application/json");
       xhr.setRequestHeader("Content-Type", "application/json");
+      var token = $("meta[name='_csrf']").attr("content");
+      var header = $("meta[name='_csrf_header']").attr("content");
+      xhr.setRequestHeader(header, token);
     },
     success : function(data) {
       successHandler(data);

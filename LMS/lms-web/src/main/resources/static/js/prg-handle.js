@@ -45,9 +45,13 @@ $(function() {
   function deletePhase(event) {
     var elemID = event.currentTarget.id.split("_")[1];
     var path = '/lms-web/del/phase/' + elemID;
-    
-    callDELETEService(path, data => { console.log(data); alert(data.message); });
-    deletePhaseUpdateDOM(event.currentTarget.id);
+
+    var deleted = false;
+    callDELETEService(path, data => { console.log(data); alert(data.message);
+                deletePhaseUpdateDOM(event.currentTarget.id);}, (x,s,e) => {
+        alert('AJAX Fail : error ' + x + ' , status ' + s);
+    });
+
   }
   
   function getActivePrograms(resultsHandler) {
